@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-lightest: #e0fbfc;   
+    --color-light: #c2dfe3;      
+    --color-mid: #9db4c0;       
+    --color-dark: #5c6b73;      
+    --color-darkest: #253237;    
+
+    --bg-card: rgba(92, 107, 115, 0.15);        
+    --bg-card-hover: rgba(157, 180, 192, 0.15); 
+    --bg-header: rgba(92, 107, 115, 0.35);      
+    --border-subtle: rgba(157, 180, 192, 0.15);  
+    --border-line: rgba(157, 180, 192, 0.25);    
+    --shadow: rgba(37, 50, 55, 0.5);             
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--color-darkest), #1a2c32, var(--color-darkest));
+    min-height: 100vh;
+    color: var(--color-lightest);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.page-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--color-lightest);
+    letter-spacing: -0.5px;
+}
+
+/* ─── Table Wrapper (horizontal scroll di tablet) ─── */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 16px;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 8px 32px var(--shadow);
+}
+
+/* ─── Table Desktop ─── */
+table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+thead tr {
+    background: var(--bg-header);
+}
+
+th {
+    padding: 14px 16px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--color-light);
+    text-align: left;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--border-line);
+}
+
+td {
+    padding: 12px 16px;
+    font-size: 0.875rem;
+    color: var(--color-lightest);
+    border-bottom: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
+tbody tr {
+    transition: background 0.2s ease;
+}
+
+tbody tr:hover {
+    background: var(--bg-card-hover);
+}
+
+tbody tr:nth-child(even) {
+    background: rgba(37, 50, 55, 0.3);
+}
+
+tbody tr:nth-child(even):hover {
+    background: var(--bg-card-hover);
+}
+
+/* ─── Mobile Card Layout (di bawah 768px) ─── */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 12px;
+    }
+
+    .page-title {
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+    }
+
+    .table-wrapper {
+        background: transparent;
+        backdrop-filter: none;
+        border: none;
+        box-shadow: none;
+        overflow: visible;
+    }
+
+    table {
+        border: 0;
+    }
+
+    /* Sembunyikan header */
+    thead {
+        display: none;
+    }
+
+    /* Tiap row jadi kartu */
+    tbody tr {
+        display: block;
+        margin-bottom: 16px;
+        border-radius: 14px;
+        background: var(--bg-card);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--border-subtle);
+        box-shadow: 0 4px 20px var(--shadow);
+        padding: 4px 0;
+        overflow: hidden;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    tbody tr:nth-child(even) {
+        background: var(--bg-card);
+    }
+
+    tbody tr:active {
+        transform: scale(0.98);
+        box-shadow: 0 2px 10px var(--shadow);
+    }
+
+    /* Tiap td jadi baris label:nilai */
+    tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border-subtle);
+        text-align: right;
+        font-size: 0.85rem;
+        color: var(--color-lightest);
+    }
+
+    tbody td:last-child {
+        border-bottom: none;
+    }
+
+    /* Label dari data-label attribute */
+    tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: var(--color-mid);
+        text-align: left;
+        flex-shrink: 0;
+        margin-right: 16px;
+    }
+
+    /* Baris pertama (Nama Barang) jadi header kartu */
+    tbody td:first-child {
+        background: var(--bg-header);
+        padding: 12px 16px;
+        border-radius: 14px 14px 0 0;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--color-lightest);
+    }
+
+    tbody td:first-child::before {
+        color: var(--color-light);
+        font-size: 0.7rem;
+    }
+}
+
+/* ─── Extra small screens ─── */
+@media screen and (max-width: 400px) {
+    .page-title {
+        font-size: 1.2rem;
+    }
+
+    tbody td {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    tbody td::before {
+        font-size: 0.7rem;
+    }
+}
