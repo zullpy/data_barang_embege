@@ -28,7 +28,7 @@ $data = array_map(
 </head>
 <body>
     <div class="container">
-        <h1 class="page-title">Data dan Harga Barang</h1>
+        <h1 class="page-title">Daftar Harga Barang</h1>
 
         <div class="toolbar">
             <div class="search-box">
